@@ -1,0 +1,16 @@
+.viewProd
+{
+    display:flex;
+    /* align-items: center; */
+    justify-content: space-evenly;
+}
+@media(max-width:750px)
+{
+    .viewProd
+    {
+        display: block;
+    }
+    .viewProd img{
+        width: 80%;
+    }
+}

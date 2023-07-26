@@ -1,0 +1,34 @@
+
+.wishlist
+{
+    display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+  
+}
+.details
+{
+    display: flex;
+    justify-content: space-around;
+}
+.priceDet
+{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+@media(max-width:500px)
+{
+    .priceDet
+    {
+        display: grid;
+        grid-template-columns: auto;
+    }
+}
+@media(max-width:400px)
+{
+    td img{
+        width:100px;
+    }
+ 
+}
