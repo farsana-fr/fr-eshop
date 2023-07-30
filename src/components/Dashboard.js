@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,Component} from 'react'
+import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+// import ExampleCarouselImage from 'components/ExampleCarouselImage'
+function Dashboard({cart,onChange,wish,setWish,addToCart,prod,setProd}) {
 
-function Dashboard({cart,onChange,wish,setWish}) {
-
-    const [prod,setProd]=useState([])
+    
 
     console.log(cart.length);
   const getProducts=async()=>{
@@ -15,26 +16,6 @@ function Dashboard({cart,onChange,wish,setWish}) {
         })
     }
 
-    function addToCart(id,title,price,image){
-      console.log("ADD TOCART");
-      const item={id:id,name:title,price:price,image:image}
-      let i=0;
-      for(;i<cart.length;i++)
-      {
-        if(cart[i].id==id)
-        {
-          cart[i].qty++;
-          break;
-        }
-      }
-      console.log(i);
-      console.log(cart.length);
-      if(i==cart.length){
-        item.qty=1;
-        onChange([...cart,item]);
-      }
-     
-    }
 
     function addToWishList(id,name,image){
       
@@ -64,7 +45,16 @@ function Dashboard({cart,onChange,wish,setWish}) {
       {
         element[id-1].classList.add("fa-regular");
         element[id-1].classList.remove("fa-solid");
-        wish.splice(id-1,1);
+        element[id-1].classList.remove("text-danger");
+        let i=0;
+        for(;i<wish.length;i++)
+        {
+          if(wish[i].id==id)
+          {
+            break;
+          }
+        }
+        wish.splice(i,1);
         setWish([...wish])
       }
       
@@ -77,7 +67,32 @@ function Dashboard({cart,onChange,wish,setWish}) {
         getProducts();
       },[])
   return (
-    <div>
+    <div className=''>
+                <Carousel className='carousel'>
+      <Carousel.Item>
+        <img
+          className="w-100" 
+          src='https://www.qed42.com/sites/default/files/styles/social_media/public/2022-02/Best%20Practices%20For%20eCommerce%20Website%20Design.png?itok=UiGZ73XD
+          '
+          alt="First slide"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className=" w-100" 
+          src='https://www.hostgator.com/blog/wp-content/uploads/2020/08/Types-of-eCommerce-Websites-1024x538.jpg'
+          alt="Second slide"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="w-100"
+          src='https://www.cloudways.com/blog/wp-content/uploads/Top-Ecommerce-Websites.jpg'
+          alt="Third slide"
+        />
+      </Carousel.Item>
+    </Carousel>
+      <h2 className='text-center'>Products</h2>
         <div className='allProducts mt-5'>
         {prod.length>0?(
         prod.map(p=>( 
@@ -85,7 +100,7 @@ function Dashboard({cart,onChange,wish,setWish}) {
           
                <div className='products rounded-3 p-1'>
                 
-                <Link to={`/view/${p.id}`} className='text-none'><img src={p.thumbnail} className="rounded-3 border border-dark" height="200px" width="100%"/>
+                <Link to={`/view/${p.id}`} className='text-none'><img src={p.thumbnail} className="rounded-3 border border-dark" height="200px" width="100%" alt='Product Image Broken! Reload page'/>
                 
                   <div className="product-header">
                   <h4 >{p.title}</h4>

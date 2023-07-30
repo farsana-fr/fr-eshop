@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table } from 'react-bootstrap';
+import { Col, Container, Row, Table } from 'react-bootstrap';
 import './CartWish.css'
 import { Link } from 'react-router-dom';
 
@@ -21,15 +21,18 @@ function WishList({wish,setWish}) {
    <div className='mt-5 container'>
     <h3 className='text-center'>Wishlist</h3>
     <div className='wishlist'>
-    {wish.length>0?(wish.map(w=>(
         
-    <div className='products p-5'>
-        <img src={w.image} alt="" height="150px" width="100%"/>
-        <p>{w.name}</p>
-        <button className='btn btn-danger' onClick={()=>removeFromWish(w.id)}>Remove</button>
-    </div>
-  ))):""}
-  </div>
+        {wish.length>0?(wish.map(w=>(
+            
+        
+            <div className='products p-5'>
+                <img src={w.image} alt="" height="100px" width="100%"/>
+                <p>{w.name}</p>
+                <button className='btn btn-danger' onClick={()=>removeFromWish(w.id)}>Remove</button>
+            </div>
+        
+      ))):""}
+      </div>
    </div>
   )
 }

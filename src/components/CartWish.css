@@ -1,11 +1,22 @@
-
 .wishlist
 {
-    display: grid;
+  display: grid;
   grid-gap: 2rem;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   padding: 10px;
-  
+}
+.allctgry,.allItems
+{
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    padding: 10px;
+}
+.products
+{
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.397);
 }
 .details
 {
@@ -17,6 +28,34 @@
     display: grid;
     grid-template-columns: auto auto;
 }
+.paymentDet,.ctgry
+{
+    box-shadow: 0px 0px 5px 0px;
+    padding: 5px;
+}
+
+.fa-trash:hover,.ctgry:hover{
+    cursor:pointer;
+}
+
+/* .btn-p-0
+{
+    padding-right:0px;
+    padding-left: 3px;
+} */
+.buttons
+{
+    display: flex;
+    justify-content:center ;
+    align-items: center;
+}
+@media(max-width:1000px)
+{
+    h4
+    {
+        font-size: medium;
+    }
+}
 @media(max-width:500px)
 {
     .priceDet
@@ -24,11 +63,13 @@
         display: grid;
         grid-template-columns: auto;
     }
+   
+
 }
 @media(max-width:400px)
 {
     td img{
-        width:100px;
+        width:80px;
     }
  
 }

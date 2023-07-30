@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import './View.css'
 import Carousel from 'react-bootstrap/Carousel';
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
-function View({cart,onChange}) {
+function View({cart,onChange,addToCart}) {
 
 
    const params=useParams();
@@ -19,22 +19,22 @@ function View({cart,onChange}) {
 viewProduct();
    },[]);
 
-   function addToCart(id,title,price,image){
-    const item={id:id,name:title,price:price,image:image}
-    let i=0;
-    for(;i<cart.length;i++)
-    {
-      if(cart[i].id==id)
-      {
-        cart[i].qty++;
-      }
-    }
-    if(i==cart.length){
-      item.qty=1;
-      onChange([...cart,item]);
-    }
+  //  function addToCart(id,title,price,image){
+  //   const item={id:id,name:title,price:price,image:image}
+  //   let i=0;
+  //   for(;i<cart.length;i++)
+  //   {
+  //     if(cart[i].id==id)
+  //     {
+  //       cart[i].qty++;
+  //     }
+  //   }
+  //   if(i==cart.length){
+  //     item.qty=1;
+  //     onChange([...cart,item]);
+  //   }
    
-  }
+  // }
    console.log(cart.length);
   return (
 
@@ -56,7 +56,7 @@ viewProduct();
             <hr />
 
             <button className=" btn btn-outline-dark" onClick={()=>addToCart(details.id,details.title,details.price,details.thumbnail)}><i class="fa-solid fa-cart-plus" ></i>Add To Cart</button>
-            <button className="ms-5 btn btn-success"><i class="fa-solid fa-cart-plus"></i>Buy Now</button>
+            {/* <button className="ms-5 btn btn-success"><i class="fa-solid fa-cart-plus"></i>Buy Now</button> */}
             {/* <p>Stock: {details.stock}</p> */}
             {/* <p>Rating: {details.rating}</p>
             <p>Category: {details.category}</p> */}

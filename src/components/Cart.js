@@ -28,16 +28,55 @@ function Cart({cart,onChange}) {
             
             if(cart[i].id==id)
             {
-                if(cart[i].qty>1)
-                {
-                    cart[i].qty--;
-                }
-                else{
+                // if(cart[i].qty>1)
+                // {
+                //     cart[i].qty--;
+                // }
+                // else{
                     cart.splice(i,1);
-                }
+                // }
             }
         }
         onChange([...cart]);
+        calcTotal();
+    }
+    function decreaseQty(id)
+    {
+      console.log("decrease");
+      for(let i=0;i<cart.length;i++)
+      {
+        if(cart[i].id===id)
+        {
+          console.log(cart[i].qty);
+          if(cart[i].qty>1)
+          {
+            cart[i].qty--;
+            onChange([...cart]);
+            calcTotal();
+          }
+          else
+          {
+            cart.splice(i,1);
+            onChange([...cart]);
+            calcTotal();
+          }
+          
+        }
+      }
+    }
+    function increaseQty(id)
+    {
+      console.log("increase");
+      console.log(cart);
+      for(let i=0;i<cart.length;i++)
+      {
+        if(cart[i].id===id)
+        {
+          cart[i].qty++;
+          onChange([...cart]);
+          calcTotal();
+        }
+      }
     }
        useEffect(()=>{
     viewCart();
@@ -66,10 +105,13 @@ cart.map(c=>
           <td>
           <img src={c.image} alt="image" width="180px"/>
             {c.name}</td>
-          <td>{c.qty}</td>
+          <td className='buttons'>
+            <button className='btn btn-p-0' onClick={()=>decreaseQty(c.id)}>-</button>
+            {c.qty}
+            <button className='btn btn-p-0' onClick={()=>increaseQty(c.id)}>+</button></td>
           <td>{c.price}</td>
           <td>{c.price*c.qty}</td>
-          <td><button className="btn btn-danger" onClick={()=>removeFromCart(c.id)}>Remove(1)</button></td>
+          <td><i class="fa-solid fa-trash text-danger" onClick={()=>removeFromCart(c.id)}></i></td>
         </tr>
     )
       
